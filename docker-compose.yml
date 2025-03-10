@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  springboot:
+    build: .
+    container_name: loan_tracker_service
+    ports:
+      - "8088:8088"
