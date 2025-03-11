@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 public class LocalDbServices {
@@ -45,4 +46,14 @@ public class LocalDbServices {
         return null;
     }
 
+    public boolean editDataUser(UserBody userBody) {
+        boolean found = false;
+        for(UserBody userData : listOfUsersData){
+            if(Objects.equals(userData.phoneNo, userBody.phoneNo)){
+                userData.setExpenseList(userBody.getExpenseList());
+                found = true;
+            }
+        }
+        return found;
+    }
 }

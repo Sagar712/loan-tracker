@@ -17,6 +17,10 @@ public class UserBody {
         return name;
     }
 
+    public void setExpenseList(List<Expense> expenseList) {
+        this.expenseList = expenseList;
+    }
+
     public long getPhoneNo() {
         return phoneNo;
     }

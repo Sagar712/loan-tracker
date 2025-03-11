@@ -36,6 +36,21 @@ public class DbController {
         }
     }
 
+    @PutMapping("/share")
+    ResponseEntity editSharedData(@RequestBody UserBody userBody){
+        try {
+            if(userBody.phoneNo.toString().length() == 10 && !userBody.getName().isBlank()){
+                if(localDbServices.editDataUser(userBody))
+                    return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>("Not found entry!", HttpStatus.BAD_REQUEST);
+            }
+            else
+                return new ResponseEntity<>("Name or number is missing", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/share")
     ResponseEntity addSharedData(@RequestBody UserBody userBody){
         try {
